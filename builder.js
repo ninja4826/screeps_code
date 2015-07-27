@@ -1,4 +1,4 @@
-modeule.exports = function (creep) {
+module.exports = function (creep) {
     if (creep.carry.energy == 0) {
         creep.moveTo(Game.spawns.Spawn1);
         Game.spawns.Spawn1.transferEnergy(creep);

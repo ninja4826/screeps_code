@@ -19,7 +19,7 @@ module.exports = function(spawn) {
     }
     if (spawn.canCreateCreep(roles[spawn.memory.building]) == OK) {
         if (spawn.memory.spawn_queue[spawn.memory.building].length > 0) {
-            Game.creeps[spawn.memory.spawn_queue[spawn.memory.building][0]].role = spawn.memory.building;
+            Game.creeps[spawn.memory.spawn_queue[spawn.memory.building][0]].memory.role = spawn.memory.building;
             spawn.memory.spawn_queue[spawn.memory.building].shift();
         }
     }

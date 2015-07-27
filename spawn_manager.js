@@ -35,5 +35,6 @@ module.exports = function(spawn) {
     }
     var creep_name = role + creeps[role].length + 1;
     spawn.createCreep(roles[role], creep_name);
+    while (spawn.canCreateCreep(roles[role]) != OK)
     Game.creeps[creep_name].memory.role = role;
 }

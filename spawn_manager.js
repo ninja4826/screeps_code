@@ -33,16 +33,19 @@ module.exports = function(spawn) {
     }
     if (creeps['harvester'].length < 2) {
         if (spawn.canCreateCreep(roles['harvester']) != OK) {
+            console.log('harvester');
             return;
         }
         role = 'harvester';
     } else if (creeps['builder'].length < 1) {
         if (spawn.canCreateCreep(roles['builder']) != OK) {
+            console.log('builder');
             return;
         }
         role = 'builder';
     } else if (creeps['guard'].length < 2) {
         if (spawn.canCreateCreep(roles['guard']) != OK) {
+            console.log('guard');
             return;
         }
         role = 'guard';

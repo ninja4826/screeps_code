@@ -10,6 +10,19 @@ module.exports = function(spawn) {
         'builder': [],
         'guard': []
     };
+    if (!('spawn_queue' in spawn.memory)) {
+        spawn.memory.spawn_queue = {
+            'harvester': [],
+            'builder': [],
+            'guard': []
+        };
+    }
+    if (spawn.canCreateCreep(roles[spawn.memory.building]) == OK) {
+        if (spawn.memory.spawn_queue[spawn.memory.building].length > 0) {
+            Game.creeps[spawn.memory.spawn_queue[spawn.memory.building][0]].role = spawn.memory.building;
+            spawn.memory.spawn_queue[spawn.memory.building].shift();
+        }
+    }
     for (var name in Game.creeps) {
         var role = Game.creeps[name].memory.role;
         if (!(role in creeps)) {
@@ -35,9 +48,6 @@ module.exports = function(spawn) {
     }
     var creep_name = role + creeps[role].length + 1;
     spawn.createCreep(roles[role], creep_name);
-    while (spawn.canCreateCreep(roles[role]) != OK) {
-        console.log('WAITING');
-    }
-    console.log('DONE WAITING');
-    Game.creeps[creep_name].memory.role = role;
+    spawn.memory.building = role;
+    spawn.memory.spawn_queue[role].push(creep_name);
 }

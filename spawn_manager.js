@@ -35,7 +35,9 @@ module.exports = function(spawn) {
     }
     var creep_name = role + creeps[role].length + 1;
     spawn.createCreep(roles[role], creep_name);
-    while (spawn.canCreateCreep(roles[role]) != OK);
+    while (spawn.canCreateCreep(roles[role]) != OK) {
+        console.log('WAITING');
+    }
     console.log('DONE WAITING');
     Game.creeps[creep_name].memory.role = role;
 }

@@ -5,7 +5,11 @@ module.exports = function(spawn) {
         'guard': [TOUGH, ATTACK, MOVE, MOVE]
     }
     var role;
-    var creeps = {};
+    var creeps = {
+        'harvester': [],
+        'builder': [],
+        'guard': []
+    };
     for (var name in Game.creeps) {
         var role = Game.creeps[name].memory.role;
         if (!(role in creeps)) {

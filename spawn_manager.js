@@ -40,7 +40,11 @@ module.exports = function(spawn) {
     var creep_name = role + (creeps[role].length + 1);
     spawn.createCreep(roles[role], creep_name);
     debugger;
-    var creep = Game.creeps[creep_name];
+    var creep;
+    while (!(creep_name in Game.creeps)) {
+        console.log(creep_name + ' does not exist');
+    }
+    creep = Game.creeps[creep_name];
     while (!('role' in creep.memory)) {
         creep.memory.role = role;
         console.log('trying to set role');
